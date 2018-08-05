@@ -1,0 +1,74 @@
+<section id="register" class="register-section">
+	<div class="container" ng-controller="BabySitterController">
+		<p id="heading">Baby Sitter Registration</p>
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-6">
+				<form action="Controller" id="registerForm" name="registerForm" novalidate>
+					<div class="row">
+						<div class="form-group col-md-8">
+							<label for="name">Name:</label> <input type="text"
+								class="form-control" name="bsname" ng-model="bsname"
+								ng-pattern="/^[a-zA-Z]{1,}$/" required="required">
+						</div>
+						<div class="col-md-4 error"
+							ng-if="registerForm.bsname.$dirty || registerForm.bsname.$touched"
+							)>
+							<p class="row" ng-if="registerForm.bsname.$error.required">Name
+								is required</p>
+							<p class="row"
+								ng-if="registerForm.bsname.$dirty && registerForm.bsname.$error.pattern">Alphabets
+								only</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-8">
+							<label for="age">Age:</label> <input type="number"
+								class="form-control" name="bsage" ng-model="bsage"
+								required="required" ng-min="25">
+						</div>
+						<div class="col-md-4 error"
+							ng-if="registerForm.bsage.$dirty || registerForm.bsage.$touched">
+							<p class="row" ng-if="registerForm.bsage.$error.required">Age
+								is required</p>
+							<p class="row"
+								ng-if="registerForm.bsage.$dirty && registerForm.bsage.$error.min">Minimum
+								age 25</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-8">
+							<label for="exp">Experience:</label> <input type="number"
+								class="form-control" ng-min="1" name="bsexp" ng-model="bsexp" ng-pattern="/^[0-9]{1,}$/"
+								required="required">
+						</div>
+						<div class="col-md-4 error" ng-if="registerForm.bsexp.$dirty || registerForm.bsexp.$touched">
+							<p class="row" ng-if="registerForm.bsexp.$error.required">Experience
+								is required</p>
+							<p class="row"
+								ng-if="registerForm.bsexp.$dirty && registerForm.bsexp.$error.min">Minimum experience 1</p>
+							<p class="row"
+								ng-if="registerForm.bsexp.$dirty && registerForm.bsexp.$error.pattern">Numbers only</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-8">
+							<label>Type:</label> <select name="bstype" class="form-control" ng-model="bstype"
+								required="required">
+								<option value="">Select Type</option>
+								<option value="PART-TIME">Part Time</option>
+								<option value="FULL-TIME">Full Time</option>
+							</select>
+						</div>
+						<div class="col-md-4 error" ng-if="registerForm.bstype.$dirty || registerForm.bstype.$touched">
+							<p class="row" ng-if="registerForm.bstype.$error.required">Type
+								is required</p>
+						</div>
+					</div>
+					<input type="button" ng-disabled="!registerForm.$valid" ng-click="registerBabySitter()" class="btn btn-primary btn-xs" name="action"
+						value="Register">
+				</form>
+			</div>
+		</div>
+	</div>
+</section>

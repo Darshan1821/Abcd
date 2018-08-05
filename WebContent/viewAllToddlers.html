@@ -1,0 +1,64 @@
+<section id="toddlerTable">
+	<div class="container" ng-controller="ViewController">
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<p id="heading">Toddler Information</p>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="search col-md-4">
+				<input type="text" ng-model="query" class="form-control"
+					placeholder="Search here">
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table table-striped" id="toddlers">
+					<tr>
+						<th ng-click="sort('toddlerId')">Toddler Id <span
+							class="fas fa-sort" ng-show="sortKey=='toddlerId'"
+							ng-class="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+						</th>
+						<th ng-click="sort('toodlerName')">Toddler Name <span
+							class="fas fa-sort" ng-show="sortKey=='toodlerName'"
+							ng-class="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+						</th>
+						<th ng-click="sort('toddlerAge')">Toddler Age <span
+							class="fas fa-sort" ng-show="sortKey=='toddlerAge'"
+							ng-class="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+						</th>
+						<th ng-click="sort('bsId')">BabySitter Id <span
+							class="fas fa-sort" ng-show="sortKey=='bsId'"
+							ng-class="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+						</th>
+						<th ng-click="sort('bsName')">BabySitter Name <span
+							class="fas fa-sort" ng-show="sortKey=='bsName'"
+							ng-class="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+						</th>
+						<th ng-click="sort('bsType')">BabySitter Type <span
+							class="fas fa-sort" ng-show="sortKey=='bsType'"
+							ng-class="{'fa-sort-up':reverse,'fa-sort-down':!reverse}"></span>
+						</th>
+						<th>Udpate</th>
+					</tr>
+					<tr
+						dir-paginate="toddler in toddlers | filter: query | orderBy:sortKey:!reverse | itemsPerPage:5">
+						<td>{{toddler.toddlerId}}</td>
+						<td>{{toddler.toodlerName}}</td>
+						<td>{{toddler.toddlerAge}}</td>
+						<td>{{toddler.babySitter.bsId}}</td>
+						<td>{{toddler.babySitter.bsName}}</td>
+						<td>{{toddler.babySitter.bsType}}</td>
+						<td ng-if="toddler.babySitter.bsType == 'FULL-TIME'"><a
+							href="#!updateToddler/{{toddler.toddlerId}}">Update</a></td>
+						<td ng-if="toddler.babySitter.bsType != 'FULL-TIME'">-</td>
+					</tr>
+				</table>
+				<dir-pagination-controls max-size="5"> </dir-pagination-controls>
+			</div>
+		</div>
+	</div>
+</section>

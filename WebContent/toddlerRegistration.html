@@ -1,0 +1,64 @@
+<section id="td-register" class="td-register-section">
+	<div class="container" ng-controller="ToddlerController">
+		<div class="row">
+			<div class="col-md-6"></div>
+			<div class="col-md-6">
+				<form action="Controller" id="registerForm" name="registerForm" novalidate>
+					<div class="row">
+						<div class="col-md-8">
+							<p id="heading">Toddler Registration</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-8">
+							<label for="name">Name:</label> <input type="text"
+								class="form-control" name="tdname" ng-model="tdname"
+								ng-pattern="/^[a-zA-Z]{1,}$/" required="required">
+						</div>
+						<div class="col-md-4 error"
+							ng-if="registerForm.tdname.$dirty || registerForm.tdname.$touched">
+							<p class="row" ng-if="registerForm.tdname.$error.required">Name
+								is required</p>
+							<p class="row"
+								ng-if="registerForm.tdname.$dirty && registerForm.tdname.$error.pattern">Alphabets
+								only</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-8">
+							<label for="age">Age:</label> <input type="number"
+								class="form-control" name="tdage" ng-model="tdage"
+								required="required" ng-min="1" ng-max="2">
+						</div>
+						<div class="col-md-4 error"
+							ng-if="registerForm.tdage.$dirty || registerForm.tdage.$touched">
+							<p class="row" ng-if="registerForm.tdage.$error.required">Age
+								is required</p>
+							<p class="row"
+								ng-if="registerForm.tdage.$dirty && registerForm.tdage.$error.min">Minimum
+								age 1</p>
+							<p class="row"
+								ng-if="registerForm.tdage.$dirty && registerForm.tdage.$error.max">Maximum
+								age 2</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-8">
+							<label>Baby Sitter:</label> <select name="bsname" class="form-control" ng-model="bsname"
+								required="required">
+								<option value="">Select Type</option>
+								<option ng-repeat="babySitter in babySitters" value="{{babySitter.bsId}}">{{babySitter.bsName}}</option>
+							</select>
+						</div>
+						<div class="col-md-4 error" ng-if="registerForm.bsname.$dirty || registerForm.bsname.$touched">
+							<p class="row" ng-if="registerForm.bsname.$error.required">Name
+								is required</p>
+						</div>
+					</div>
+					<input type="button" ng-disabled="!registerForm.$valid" ng-click="registerToddler()" class="btn btn-primary btn-xs" name="action"
+						value="Register">
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
